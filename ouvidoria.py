@@ -1,4 +1,3 @@
-from main import manifestacao
 from operacoesbd import *
 
 def listar_manifestacoes(connection):
