@@ -1,4 +1,5 @@
-from operacoesbd import * 
+
+from operacoesbd import *
 
 def listar_manifestacoes(connection):
   query = "SELECT * FROM manifestacoes"
@@ -17,3 +18,7 @@ def contar_total_manifestacoes(connection):
     else:
       print("Nenhuma manifestação registrada no sistema.")
 
+def insertManifestion(connection,manifestacao,tipo_manifestacao):
+        query= "insert into manifestacoes (manifestacao,tipo_manifestacao) values (%s ,%s)"
+        values=[manifestacao,tipo_manifestacao]
+        insertNoBancoDados(connection,query,values)

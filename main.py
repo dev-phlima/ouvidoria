@@ -1,7 +1,7 @@
 from ouvidoria import * 
 from operacoesbd import criarConexao
 
-connection = criarConexao("localhost", "root", "snoopy", "ouvidoria")
+connection = criarConexao("localhost", "root", "brunohenrique11121314", "ouvidoria")
 
 opcao_usuario = -1 
 
@@ -11,6 +11,23 @@ while opcao_usuario != 7:
 
   if opcao_usuario == 1:
     listar_manifestacoes(connection)
+  elif opcao_usuario== 3:
+    print("\n1) Fazer Elogios", "\n2) Fazer Reclamações", "\n3) Fazer Susgestão")
+    opcao = int(input("Digite o número do tipo de manifestação desejado: "))
+    tipo_manifestacao=None
+    if opcao==1:
+      tipo_manifestacao="Elogio"
+    elif opcao==2:
+      tipo_manifestacao="Reclamação"
+    elif opcao==3:
+      tipo_manifestacao="Sugestão"
+
+    if tipo_manifestacao!= None:
+      manifestacao=input("Digite sua manifestação desejada:" )
+      insertManifestion(connection,manifestacao,tipo_manifestacao)
+    else:
+      print("Tipo de Manifestação inválida!")
+
 
 
 
