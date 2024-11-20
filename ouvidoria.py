@@ -1,4 +1,4 @@
-
+from main import manifestacao
 from operacoesbd import *
 
 def listar_manifestacoes(connection):
@@ -22,3 +22,11 @@ def insertManifestion(connection,manifestacao,tipo_manifestacao):
         query= "insert into manifestacoes (manifestacao,tipo_manifestacao) values (%s ,%s)"
         values=[manifestacao,tipo_manifestacao]
         insertNoBancoDados(connection,query,values)
+
+def listarPorTipo(connection,tiporeclamacao):
+    manifestacoes = listarBancoDados(connection, tiporeclamacao)
+    if manifestacoes:
+        for manifestacao in manifestacoes:
+            print("ID", manifestacao[0], "-", manifestacao[1], "-", manifestacao[2])
+    else:
+        print("Nenhuma manifestção cadastrada no sistema")

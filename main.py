@@ -1,7 +1,7 @@
 from ouvidoria import * 
 from operacoesbd import criarConexao
 
-connection = criarConexao("localhost", "root", "brunohenrique11121314", "ouvidoria")
+connection = criarConexao("localhost", "root", "123456", "ouvidoria")
 
 opcao_usuario = -1 
 
@@ -11,6 +11,19 @@ while opcao_usuario != 7:
 
   if opcao_usuario == 1:
     listar_manifestacoes(connection)
+  elif opcao_usuario == 2:
+    print("\n1) Elogios", "\n2) Reclamações", "\n3) Susgestão")
+    opcao= int(input('Digite sua opcao'))
+    tiporeclamacao = None
+    if opcao == 1:
+        tiporeclamacao = 'select from manifestacoes where tipo_manifestacoes = "Elogio"'
+    elif opcao == 2:
+        tiporeclamacao = 'select from manifestacoes where tipo_manifestacoes = "Reclamação"'
+    elif opcao == 3:
+        tiporeclamacao = 'select from manifestacoes where tipo_manifestacoes = "Sugestão"'
+    listarPorTipo(connection, tiporeclamacao)
+
+
   elif opcao_usuario== 3:
     print("\n1) Fazer Elogios", "\n2) Fazer Reclamações", "\n3) Fazer Susgestão")
     opcao = int(input("Digite o número do tipo de manifestação desejado: "))
