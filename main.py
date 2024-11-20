@@ -1,7 +1,7 @@
 from ouvidoria import * 
 from operacoesbd import criarConexao
 
-connection = criarConexao("localhost", "root", "19122005Pe", "ouvidoria")
+connection = criarConexao("localhost", "root", "snoopy", "ouvidoria")
 
 opcao_usuario = -1 
 
@@ -11,3 +11,8 @@ while opcao_usuario != 7:
 
   if opcao_usuario == 1:
     listar_manifestacoes(connection)
+
+
+
+  elif opcao_usuario == 4:
+    contar_total_manifestacoes(connection)
