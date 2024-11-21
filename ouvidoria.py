@@ -44,3 +44,13 @@ def pesquisar_por_codigo(connection, codigo):
         print("ID", tupla_manifestacao[0][0], "-", tupla_manifestacao[0][1], "-", tupla_manifestacao[0][2])
     else:
         print("Nenhuma manifestação encontrada com o código especificado.")
+
+
+def excluir_por_codigo(connection, codigoExcluirElogio):
+    consultaExcluirManifestacao = "delete from manifestacoes where id_manifestacao = %s"
+    dadosElogio = [codigoExcluirElogio]
+    linhasAfetadas = excluirBancoDados(connection, consultaExcluirManifestacao, dadosElogio)
+    if linhasAfetadas > 0:
+        print("Manifestação removido com sucesso!")
+    else:
+        print("Não existe Manifestação com esse código!")

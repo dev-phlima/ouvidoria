@@ -56,3 +56,8 @@ while opcao_usuario != 7:
     elif opcao_usuario == 5:
         codigo = int(input("Digite o código da manifestação desejada: "))
         pesquisar_por_codigo(connection, codigo)
+
+
+    elif opcao_usuario == 6:
+        codigoExcluirElogio = int(input("Digite o código da manifestação que será excluída: "))
+        excluir_por_codigo(connection, codigoExcluirElogio)
