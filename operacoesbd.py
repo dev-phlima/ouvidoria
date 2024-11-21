@@ -1,5 +1,6 @@
 import mysql.connector
 
+
 # Inicializa a conexão com o banco de dados
 def criarConexao(endereco, usuario, senha, bancodedados):
     try:
@@ -13,10 +14,12 @@ def criarConexao(endereco, usuario, senha, bancodedados):
         print(f"Erro ao conectar ao banco de dados: {err}")
         return None
 
+
 # Encerra a conexão com o banco de dados
 def encerrarConexao(connection):
     if connection:
         connection.close()
+
 
 # Insere dados no banco de dados com prepared statements e tratamento de exceções
 def insertNoBancoDados(connection, sql, dados):
@@ -32,6 +35,7 @@ def insertNoBancoDados(connection, sql, dados):
     finally:
         cursor.close()
     return id
+
 
 # Lista dados do banco de dados com tratamento de exceções
 def listarBancoDados(connection, sql, params=None):
@@ -49,6 +53,7 @@ def listarBancoDados(connection, sql, params=None):
         cursor.close()
     return results
 
+
 # Atualiza dados no banco de dados com tratamento de exceções
 def atualizarBancoDados(connection, sql, dados):
     try:
@@ -63,6 +68,7 @@ def atualizarBancoDados(connection, sql, dados):
     finally:
         cursor.close()
     return linhasAfetadas
+
 
 # Exclui dados no banco de dados com tratamento de exceções
 def excluirBancoDados(connection, sql, dados):
