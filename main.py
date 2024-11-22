@@ -1,7 +1,7 @@
 from ouvidoria import *
 from operacoesbd import criarConexao
 
-connection = criarConexao("localhost", "root", "19122005Pe", "ouvidoria")
+connection = criarConexao("localhost", "root", "", "ouvidoria")
 
 opcao_usuario = -1
 

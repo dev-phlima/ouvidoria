@@ -1,5 +1,20 @@
 from operacoesbd import *
 
+"""
+Para a criação do banco de dados e sua tabela, nós utilizamos da seguinte instrução: 
+
+CREATE DATABASE ouvidoria;
+
+USE ouvidoria; 
+
+CREATE TABLE manifestacoes (
+    id_manifestacao INT AUTO_INCREMENT NOT NULL,
+    manifestacao TEXT NOT NULL,                      
+    tipo_manifestacao ENUM('Elogio', 'Reclamação', 'Sugestão') NOT NULL,
+    PRIMARY KEY (id_manifestacao)
+);
+"""
+
 def listar_manifestacoes(connection):
     query = "SELECT * FROM manifestacoes"
     manifestacoes = listarBancoDados(connection, query)
