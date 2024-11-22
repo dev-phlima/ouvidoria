@@ -1,6 +1,5 @@
 from operacoesbd import *
 
-
 def listar_manifestacoes(connection):
     query = "SELECT * FROM manifestacoes"
     manifestacoes = listarBancoDados(connection, query)
@@ -13,26 +12,27 @@ def listar_manifestacoes(connection):
 
 
 def contar_total_manifestacoes(connection):
-    quantidade_de_manifestacoes = listarBancoDados(connection, "SELECT count(*) FROM manifestacoes")
+    quantidade_de_manifestacoes = listarBancoDados(connection, "SELECT COUNT(*) FROM manifestacoes")
     if quantidade_de_manifestacoes:
         print("Número total de manifestações:", quantidade_de_manifestacoes[0][0])
     else:
         print("Nenhuma manifestação registrada no sistema.")
 
 
-def insertManifestion(connection, manifestacao, tipo_manifestacao):
-    query = "insert into manifestacoes (manifestacao,tipo_manifestacao) values (%s ,%s)"
+def inserir_manifestacao(connection, manifestacao, tipo_manifestacao):
+    query = "INSERT INTO manifestacoes (manifestacao,tipo_manifestacao) VALUES (%s ,%s)"
     values = [manifestacao, tipo_manifestacao]
     insertNoBancoDados(connection, query, values)
+    print("Manifestação cadastrada com sucesso.")
 
 
-def listarPorTipo(connection, tiporeclamacao):
-    manifestacoes = listarBancoDados(connection, tiporeclamacao)
+def listar_por_tipo(connection, tipo_reclamacao):
+    manifestacoes = listarBancoDados(connection, tipo_reclamacao)
     if manifestacoes:
         for manifestacao in manifestacoes:
             print("ID", manifestacao[0], "-", manifestacao[1], "-", manifestacao[2])
     else:
-        print("Nenhuma manifestção cadastrada no sistema")
+        print("Nenhuma manifestação encontrada no sistema com o tipo fornecido.")
 
 
 def pesquisar_por_codigo(connection, codigo):
@@ -46,11 +46,11 @@ def pesquisar_por_codigo(connection, codigo):
         print("Nenhuma manifestação encontrada com o código especificado.")
 
 
-def excluir_por_codigo(connection, codigoExcluirElogio):
-    consultaExcluirManifestacao = "delete from manifestacoes where id_manifestacao = %s"
-    dadosElogio = [codigoExcluirElogio]
-    linhasAfetadas = excluirBancoDados(connection, consultaExcluirManifestacao, dadosElogio)
-    if linhasAfetadas > 0:
-        print("Manifestação removido com sucesso!")
+def excluir_por_codigo(connection, codigo_excluir):
+    query = "DELETE FROM manifestacoes WHERE id_manifestacao = %s"
+    dados = [codigo_excluir]
+    linhas_afetadas = excluirBancoDados(connection, query, dados)
+    if linhas_afetadas > 0:
+        print("Manifestação removida com sucesso!")
     else:
-        print("Não existe Manifestação com esse código!")
+        print("Não existe manifestação com esse código!")
